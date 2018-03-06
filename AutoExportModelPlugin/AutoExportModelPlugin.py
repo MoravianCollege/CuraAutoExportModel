@@ -7,7 +7,7 @@ from UM.Application import Application
 from UM.Extension import Extension
 from UM.Logger import Logger
 
-class AutoExportPlugin(QObject, Extension):
+class AutoExportModelPlugin(QObject, Extension):
     """This plugin writes an OBJ file whenever a gcode file is sent to a device/printer."""
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,17 +24,8 @@ class AutoExportPlugin(QObject, Extension):
         # The OBJ writer plugin
         obj_writer = app.getPluginRegistry().getPluginObject('OBJWriter')
 
-        # TODO: get name of output from these properties
-        Logger.log("w", "ID:    %s" % output_device.getId())
-        Logger.log("w", "Name:  %s" % output_device.getName())
-        Logger.log("w", "Desc:  %s" % output_device.getDescription())
-        Logger.log("w", "Short: %s" % output_device.getShortDescription())
-
-        Logger.log("w", "*ID:   %s" % getattr(output_device, 'key', 'N/A'))
-        Logger.log("w", "*Name: %s" % getattr(output_device, 'name', 'N/A'))
-        Logger.log("w", "*Addr: %s" % getattr(output_device, 'address', 'N/A'))
-
         # Write the data out as an OBJ file
         # TODO: not hard-coded directory
-        with open('/home/jbush/output-%s.obj'%output_device.getId(), 'w') as f:
+        name = getattr(output_device, 'name', output_device.getId()).lower()
+        with open('/Users/butters/%s.obj'%name, 'w') as f:
             obj_writer.write(f, scene.getRoot().getAllChildren())
