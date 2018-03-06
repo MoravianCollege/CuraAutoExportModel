@@ -16,9 +16,7 @@ Installing
 The official method for installing this plugin is to clone the [Uranium repository](https://github.com/Ultimaker/Uranium.git)
 from then run the following command:
 
-	```
 	python3 /path/to/Uranium/create_plugin.py /path/to/AutoExportModelPlugin
-	```
 	
 Once the plugin file is created it can be imported into Cura through the GUI.
 
