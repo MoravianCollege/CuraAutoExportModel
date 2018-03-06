@@ -1,0 +1,7 @@
+{
+    "name": "Auto Export Model",
+    "author": "Jeff Bush",
+    "version": "1.0",
+    "api": 4,
+    "description": "When G-code is sent to devices the model will also be saved as OBJ files"
+}
